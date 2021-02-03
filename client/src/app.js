@@ -1,5 +1,5 @@
 const URL = 'http://localhost:3000/tasks'
-
+const FreeURL = 'https://jsonplaceholder.typicode.com/todos/1'
 
 /** API FUNCTIONS */
 const fetchData = async (url, options = {}) => {
@@ -8,8 +8,8 @@ const fetchData = async (url, options = {}) => {
   return data
 }
 
-// fetchData(URL)
-//   .then(data => console.log(data))
+fetchData(FreeURL)
+  .then(data => console.log(data))
 
 /* FUNCTIONS */
 

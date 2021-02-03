@@ -1,0 +1,13 @@
+1. Crear una app CRUD -> 
+2. Para crear POSTS -> 
+2.1 Title
+2.2 Texto
+3. Cada post Listar, eliminar, editar
+* LocalStorage 
+* Estudiantes backend de la APP
+
+4. Login/ register
+5. Cada user podra editar o eliminar sus propios posts
+6. El user logeado podra ver todos los posts
+
+7. FEATURE: comentarios POSTS
