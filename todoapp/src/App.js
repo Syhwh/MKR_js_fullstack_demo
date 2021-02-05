@@ -1,22 +1,34 @@
+import React, { useState } from 'react';
 import './App.css';
-import { Button } from './components/Button/Button';
+
+import { CreatePostContainer } from './components/CreatePost/CreatePostContainer';
 import { PostCardContainer } from './components/PostCard/PostCardContainer';
 
-
+import { posts as initialState } from './utils/postsDb';
 
 function App() {
-  const general = () => console.log('general')
+  // General state
+  const [posts, setPosts] = useState(initialState);
+
+  const updatePostsState = (post) => {
+    setPosts([{ id: posts.length + 1, ...post }, ...posts])
+  }
+
+
+  // OJO no hay que borrar el post, UNO NUNCA MODIFICA EL ARREGLO
+  // filter -> return todo menos el id
 
   return (
     <div className='container'>
       <div className='App' style={{ backgroundColor: 'red' }}>
-        The best posts
-        {/* <button onClick={() => console.log('CLICKED')}>Click ME</button> */}
+        The Best Posts
       </div>
-      {/* <Button name={'general'} buttonStyle={'success'} handleClick={general} /> */}
       <div className='row'>
+        <div className='col-3 '>
+          <CreatePostContainer updatePostsState={updatePostsState} />
+        </div>
         <div className='col-9 mt2'>
-          <PostCardContainer />
+          <PostCardContainer posts={posts} />
         </div>
       </div>
     </div>
