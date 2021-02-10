@@ -1,9 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { CreatePostView } from './CreatePostView'
 
 const initalState = { title: '', content: '' }
 
-export const CreatePostContainer = ({ updatePostsState }) => {
+export const CreatePostContainer = ({ updatePost, createPost, postEdit }) => {
+
   // local state to handle input changes
   const [state, setState] = useState(initalState)
 
@@ -11,13 +12,32 @@ export const CreatePostContainer = ({ updatePostsState }) => {
     const { name, value } = e.target
     setState({ ...state, [name]: value })
   }
+
   // handle submit form
   const handleOnClick = (event) => {
     event.preventDefault()
-    updatePostsState(state)
+    if (postEdit) {
+      updatePost(state)
+    } else {
+      createPost(state)
+    }
     setState({ title: '', content: '' })
   }
 
+  // ejecuta despues de que el componente se ha montado
+  useEffect(() => {
+    console.log(' EL Hook se ha disparado')
+    // console.log(postEdit)
+    // console.log('form state', state)
+    if (postEdit) {
+      setState(postEdit)
+      console.log('POst edit ', postEdit)
+    }
+  }, [postEdit])
+
+
+
+  console.log('Create post container se ha montado')
   return (
     <CreatePostView
       values={state}

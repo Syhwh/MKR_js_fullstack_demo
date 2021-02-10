@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, } from 'react';
 import './App.css';
 
 import { CreatePostContainer } from './components/CreatePost/CreatePostContainer';
@@ -10,13 +10,25 @@ function App() {
   // General state
   const [posts, setPosts] = useState(initialState);
 
-  const updatePostsState = (post) => {
-    setPosts([{ id: posts.length + 1, ...post }, ...posts])
+  // edit post state
+  const [postEdit, setPostEdit] = useState(null);
+
+  const createPost = (post) => {
+    setPosts([{ id: Date.now(), ...post }, ...posts])
+  }
+
+  const deletePost = (postId) => {
+    const newState = posts.filter((post) => post.id !== postId)
+    setPosts(newState)
   }
 
 
-  // OJO no hay que borrar el post, UNO NUNCA MODIFICA EL ARREGLO
-  // filter -> return todo menos el id
+  const updatePost = (postEdited) => {
+    console.log('Edited post', postEdited)
+    const newEditedPosts = posts.map((post) => post.id === postEdited.id ? postEdited : post)
+    setPosts(newEditedPosts)
+  }
+
 
   return (
     <div className='container'>
@@ -25,10 +37,10 @@ function App() {
       </div>
       <div className='row'>
         <div className='col-3 '>
-          <CreatePostContainer updatePostsState={updatePostsState} />
+          <CreatePostContainer createPost={createPost} updatePost={updatePost} postEdit={postEdit} />
         </div>
         <div className='col-9 mt2'>
-          <PostCardContainer posts={posts} />
+          <PostCardContainer posts={posts} deletePost={deletePost} editPost={setPostEdit} />
         </div>
       </div>
     </div>

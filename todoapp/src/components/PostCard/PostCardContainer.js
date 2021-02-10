@@ -2,18 +2,21 @@ import React from 'react'
 
 import { PostCardView } from './PostCardView';
 
-export const PostCardContainer = ({ posts }) => {
+export const PostCardContainer = ({ posts, deletePost, editPost }) => {
 
-  const handleEdit = () => {
+  const handleEdit = (post) => {
     console.log('Edit')
+    editPost(post) //-> setEditPost
   }
 
-  const handleDelete = () => {
-    console.log('Delete')
+  const handleDelete = (id) => {
+    console.log('Delete', id)
+    deletePost(id)
   }
   const handleVotar = (id) => {
     console.log('VOTAR', id)
   }
+  console.log('Render PostCardContainer ')
   return (<>
     {
       posts.map((post) => (
