@@ -6,7 +6,7 @@ import React from 'react'
 // 1 otra manera state no se a un objeto
 // 2 refactor componente no maneje logica
 
-export const CreatePostView = ({ values, handleOnChange, handleOnSubmit }) => {
+export const CreatePostView = ({ values, handleOnChange, handleOnSubmit, editMode }) => {
   return (
     <form>
       <div className='mb-3'>
@@ -29,7 +29,12 @@ export const CreatePostView = ({ values, handleOnChange, handleOnSubmit }) => {
           onChange={handleOnChange}
         ></textarea>
       </div>
-      <button onClick={handleOnSubmit} type='submit' className='btn btn-primary'>Publish</button>
+      <button
+        onClick={handleOnSubmit}
+        type='submit'
+        className={`btn btn-${editMode ? 'danger' : 'primary'}`}>
+        {editMode ? 'Edit Post' : 'Publish'}
+      </button>
     </form>
   )
 }

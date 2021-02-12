@@ -7,7 +7,7 @@ export const CreatePostContainer = ({ updatePost, createPost, postEdit }) => {
 
   // local state to handle input changes
   const [state, setState] = useState(initalState)
-
+  const [editMode, setEditMode] = useState(false)
   const handleInputOnchange = (e) => {
     const { name, value } = e.target
     setState({ ...state, [name]: value })
@@ -26,23 +26,26 @@ export const CreatePostContainer = ({ updatePost, createPost, postEdit }) => {
 
   // ejecuta despues de que el componente se ha montado
   useEffect(() => {
-    console.log(' EL Hook se ha disparado')
-    // console.log(postEdit)
-    // console.log('form state', state)
+    console.log('Renderiza useEffect del formulario')
     if (postEdit) {
       setState(postEdit)
-      console.log('POst edit ', postEdit)
+      setEditMode(true)
+    } else {
+
+      setEditMode(false)
     }
+
   }, [postEdit])
 
 
+  console.log('Renderiza formulario')
 
-  console.log('Create post container se ha montado')
   return (
     <CreatePostView
       values={state}
       handleOnChange={handleInputOnchange}
-      handleOnSubmit={handleOnClick} />
+      handleOnSubmit={handleOnClick}
+      editMode={editMode} />
   )
 }
 

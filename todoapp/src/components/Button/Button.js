@@ -1,6 +1,6 @@
 import React from 'react'
 
-export const Button = ({ name, buttonStyle, handleClick }) => {
+export const Button = ({ name, buttonStyle = 'primary', handleClick }) => {
   return (
     <button
       onClick={handleClick}

@@ -5,16 +5,16 @@ import { PostCardView } from './PostCardView';
 export const PostCardContainer = ({ posts, deletePost, editPost }) => {
 
   const handleEdit = (post) => {
-    console.log('Edit')
+    // console.log('Edit')
     editPost(post) //-> setEditPost
   }
 
   const handleDelete = (id) => {
-    console.log('Delete', id)
+    // console.log('Delete', id)
     deletePost(id)
   }
   const handleVotar = (id) => {
-    console.log('VOTAR', id)
+    // console.log('VOTAR', id)
   }
   console.log('Render PostCardContainer ')
   return (<>
@@ -26,7 +26,8 @@ export const PostCardContainer = ({ posts, deletePost, editPost }) => {
           handleEdit={handleEdit}
           handleDelete={handleDelete}
           handleVotar={handleVotar}
-        />))
+        />
+      ))
     }
   </>
   )
